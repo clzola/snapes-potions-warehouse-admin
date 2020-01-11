@@ -1,17 +1,19 @@
 <template>
   <v-app>
-    <Admin/>
+    <Login/>
   </v-app>
 </template>
 
 <script>
-import Admin from './admin/Admin'
+// import Admin from './admin/Admin'
+import Login from './login/Login'
 
 export default {
   name: 'App',
 
   components: {
-    Admin
+    // Admin,
+    Login
   },
 
   data: () => ({
