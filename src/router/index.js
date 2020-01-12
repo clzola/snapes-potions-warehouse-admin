@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import store from '../store'
 import Admin from '../admin/Admin'
 import Login from '../login/Login'
+import Dashboard from '../dashbaord/Dashboard'
 
 Vue.use(VueRouter)
 
@@ -13,7 +14,12 @@ const routes = [
     meta: {
       requiresAuth: true
     },
-    children: []
+    children: [
+      {
+        path: '',
+        component: Dashboard
+      }
+    ]
   },
   {
     path: '/login',
