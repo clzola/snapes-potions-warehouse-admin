@@ -26,17 +26,7 @@
       </v-menu>
     </v-app-bar>
     <v-content>
-      <v-container>
-        <v-row>
-          <v-col>
-            <v-card>
-              <v-card-text>
-                <h2>Admin Panel</h2>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
+      <router-view></router-view>
     </v-content>
   </div>
 </template>
