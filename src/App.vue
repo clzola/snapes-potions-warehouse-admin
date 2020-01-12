@@ -1,23 +1,11 @@
 <template>
   <v-app>
-    <Login/>
+    <router-view></router-view>
   </v-app>
 </template>
 
 <script>
-// import Admin from './admin/Admin'
-import Login from './login/Login'
-
 export default {
-  name: 'App',
-
-  components: {
-    // Admin,
-    Login
-  },
-
-  data: () => ({
-    //
-  })
+  name: 'App'
 }
 </script>

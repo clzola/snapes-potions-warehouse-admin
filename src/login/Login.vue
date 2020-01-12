@@ -10,14 +10,14 @@
             </v-toolbar>
             <v-card-text>
               <v-form>
-                <v-text-field outlined label="E-Mail Address" name="email" prepend-icon="mdi-email" type="email"></v-text-field>
-                <v-text-field outlined label="Password" name="password" prepend-icon="mdi-lock" type="password"></v-text-field>
+                <v-text-field outlined v-model="email" :error-messages="errorMessage" label="E-Mail Address" name="email" prepend-icon="mdi-email" type="email"></v-text-field>
+                <v-text-field outlined v-model="password" label="Password" name="password" prepend-icon="mdi-lock" type="password"></v-text-field>
               </v-form>
             </v-card-text>
              <v-card-actions>
               <v-spacer />
               <v-btn text>Forgot your password?</v-btn>
-              <v-btn color="primary">Login</v-btn>
+              <v-btn color="primary" @click="login" :loading="loading">Login</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -28,6 +28,41 @@
 
 <script>
 export default {
+  data() {
+    return {
+      email: 'snape@slytherin.org',
+      password: 'secret',
+      errorMessage: null,
+      loading: false
+    }
+  },
+  methods: {
+    login() {
+      this.resetErrorMessage()
+      this.loading = true
 
+      let credentials = { email: this.email, password: this.password }
+
+      this.$http.post('/auth/token', credentials)
+        .then(response => {
+          this.loading = false
+          this.$store.commit('setAccessToken', response.data.access_token)
+          this.$router.push('/')
+        })
+        .catch(error => {
+          this.loading = false
+
+          if (error.response.status === 401) {
+            this.errorMessage = 'Provided credentials does not match any in the database'
+            return
+          }
+
+          this.errorMessage = 'Unknown error occured, please try again later...'
+        })
+    },
+    resetErrorMessage() {
+      this.errorMessage = null
+    }
+  }
 }
 </script>

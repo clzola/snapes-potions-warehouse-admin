@@ -3,19 +3,24 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
-    accessToken: localStorage.getItem('access_token'),
-    user: JSON.parse(localStorage.getItem('user'))
+    accessToken: localStorage.getItem('access_token')
   },
   mutations: {
     setAccessToken(state, accessToken) {
-      localStorage.setItem('access_token', accessToken)
+      if (accessToken) {
+        localStorage.setItem('access_token', accessToken)
+      }
+      else {
+        localStorage.removeItem('access_token')
+      }
       state.accessToken = accessToken
-    },
-    setUser(state, user) {
-      localStorage.setItem(JSON.stringify(user))
-      state.user = user
+    }
+  },
+  getters: {
+    authenticated: state => {
+      return state.accessToken !== null && state.accessToken !== undefined
     }
   },
   actions: {
@@ -23,3 +28,5 @@ export default new Vuex.Store({
   modules: {
   }
 })
+
+export default store
