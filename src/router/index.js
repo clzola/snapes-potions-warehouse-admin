@@ -51,6 +51,9 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   let authenticated = store.getters.isAuthenticated
+  if (store.state.auth.accessToken && store.state.auth.user === null) {
+    store.commit('setUserFromToken', store.state.auth.accessToken)
+  }
 
   if (to.matched.some(record => record.meta.requiresAuth) && !authenticated) {
     next({
