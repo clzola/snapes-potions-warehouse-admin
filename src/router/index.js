@@ -50,11 +50,9 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  let accessToken = store.state.accessToken
-  let authenticated = accessToken !== null && accessToken !== undefined
+  let authenticated = store.getters.isAuthenticated
 
   if (to.matched.some(record => record.meta.requiresAuth) && !authenticated) {
-    console.log('next(requiresAuth)')
     next({
       path: '/login',
       params: { nextUrl: to.fullPath }
@@ -63,12 +61,9 @@ router.beforeEach((to, from, next) => {
   }
 
   if (to.matched.some(record => record.meta.guest) && authenticated) {
-    console.log('next(guest)')
     next({ path: '/' })
     return
   }
-
-  console.log('next()')
 
   next()
 })

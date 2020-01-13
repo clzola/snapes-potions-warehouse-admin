@@ -10,7 +10,7 @@
       <v-menu offset-y>
         <template v-slot:activator="{ on }">
           <v-btn text v-on="on">
-            User Name
+            {{ userName }}
             <v-icon right>mdi-menu-down</v-icon>
           </v-btn>
         </template>
@@ -41,13 +41,13 @@ export default {
   },
   data() {
     return {
-      drawer: null
+      drawer: null,
+      userName: this.$store.state.auth.user.name
     }
   },
   methods: {
     logout() {
-      this.$store.commit('setAccessToken', null)
-      this.$router.push('/login')
+      this.$store.dispatch('logout').then(() => this.$router.push('/login'))
     }
   }
 }

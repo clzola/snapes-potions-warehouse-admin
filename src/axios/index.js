@@ -19,7 +19,7 @@ httpClient.interceptors.request.use(
       }
     }
 
-    let accessToken = store.state.accessToken
+    let accessToken = store.state.auth.accessToken
     if (accessToken) {
       config.headers.common['Authorization'] = `Bearer ${accessToken}`
     }
@@ -48,11 +48,7 @@ httpClient.interceptors.response.use(
 
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true
-      return httpClient.post('/auth/token/refresh')
-        .then((response) => {
-          store.commit('setAccessToken', response.data.access_token)
-          return httpClient(originalRequest)
-        })
+      return store.dispatch('refreshAccessToken').then(() => httpClient(originalRequest))
     }
 
     return Promise.reject(error)
