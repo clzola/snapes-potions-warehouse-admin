@@ -18,13 +18,11 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios.post('/auth/token', credentials)
         .then((response) => {
-          localStorage.setItem('access_token', response.data.access_token)
-          commit('setToken', response.data.access_token)
-          return axios.get('/api/profile').then((response) => response.data.data)
-        })
-        .then((user) => {
-          commit('setUser', user)
-          resolve(user)
+          let accessToken = response.data.access_token
+          localStorage.setItem('access_token', accessToken)
+          commit('setToken', accessToken)
+          commit('setUserFromToken', accessToken)
+          resolve(response)
         })
         .catch((error) => {
           commit('setError')
@@ -65,6 +63,14 @@ const mutations = {
   refreshToken(state, token) {
     state.accessToken = token
     localStorage.setItem('access_token', token)
+  },
+  setUserFromToken(state, token) {
+    let claims = JSON.parse(atob(token.split('.')[1]))
+    state.user = {
+      id: claims.sub,
+      name: claims.name,
+      email: claims.email
+    }
   },
   setUser(state, user) {
     state.user = user
