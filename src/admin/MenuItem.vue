@@ -1,5 +1,5 @@
 <template>
-  <v-list-item link>
+  <v-list-item :to="href" active-class="active-link">
     <v-list-item-action>
       <v-icon>{{ icon }}</v-icon>
     </v-list-item-action>
@@ -12,6 +12,12 @@
 <script>
 export default {
   name: 'app-menu-item',
-  props: ['icon', 'title']
+  props: ['icon', 'title', 'href']
 }
 </script>
+
+<style lang="sass" scoped>
+.active-link
+  background-color: #06ff5b2b
+  color: #1a472a
+</style>

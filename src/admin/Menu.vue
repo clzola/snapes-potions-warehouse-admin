@@ -3,7 +3,8 @@
     <MenuHeader></MenuHeader>
     <v-divider></v-divider>
     <v-list dense>
-      <MenuItem icon="mdi-flask-empty" title="Potions"></MenuItem>
+      <MenuItem icon="mdi-view-dashboard" title="Dashbaord" href="/"></MenuItem>
+      <MenuItem icon="mdi-flask-empty" title="Potions" href="/potions"></MenuItem>
       <MenuItem icon="mdi-chart-bubble" title="Ingredients"></MenuItem>
       <MenuItem icon="mdi-account-multiple" title="Users"></MenuItem>
 

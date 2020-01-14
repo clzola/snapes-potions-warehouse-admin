@@ -4,6 +4,7 @@ import store from '../store'
 import Admin from '../admin/Admin'
 import Login from '../login/Login'
 import Dashboard from '../dashbaord/Dashboard'
+import PotionsPage from '../potions/PotionsPage'
 
 Vue.use(VueRouter)
 
@@ -15,10 +16,8 @@ const routes = [
       requiresAuth: true
     },
     children: [
-      {
-        path: '',
-        component: Dashboard
-      }
+      { path: '', component: Dashboard },
+      { path: '/potions', component: PotionsPage }
     ]
   },
   {
