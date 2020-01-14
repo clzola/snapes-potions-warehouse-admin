@@ -13,7 +13,7 @@
           <v-list-item-title>Settings</v-list-item-title>
         </template>
 
-        <MenuItem title="Potion Categories"></MenuItem>
+        <MenuItem title="Potion Categories" href="/potion-categories"></MenuItem>
         <MenuItem title="Difficulty Levels"></MenuItem>
       </v-list-group>
     </v-list>

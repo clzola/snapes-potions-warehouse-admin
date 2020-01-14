@@ -5,6 +5,7 @@ import Admin from '../admin/Admin'
 import Login from '../login/Login'
 import Dashboard from '../dashbaord/Dashboard'
 import PotionsPage from '../potions/PotionsPage'
+import PotionCategoriesPage from '../potionCategories/PotionCategoriesPage'
 
 Vue.use(VueRouter)
 
@@ -17,7 +18,8 @@ const routes = [
     },
     children: [
       { path: '', component: Dashboard },
-      { path: '/potions', component: PotionsPage }
+      { path: '/potions', component: PotionsPage },
+      { path: '/potion-categories', component: PotionCategoriesPage }
     ]
   },
   {

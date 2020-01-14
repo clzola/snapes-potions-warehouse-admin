@@ -5,7 +5,7 @@
     </v-navigation-drawer>
     <v-app-bar app color="primary" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title>{{ toolbarTitle }}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-menu offset-y>
         <template v-slot:activator="{ on }">
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Menu from './Menu'
 
 export default {
@@ -44,6 +45,11 @@ export default {
       drawer: null,
       userName: this.$store.state.auth.user.name
     }
+  },
+  computed: {
+    ...mapState({
+      toolbarTitle: state => state.admin.toolbarTitle
+    })
   },
   methods: {
     logout() {

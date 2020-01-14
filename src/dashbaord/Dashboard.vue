@@ -11,3 +11,11 @@
     </v-row>
   </v-container>
 </template>
+
+<script>
+export default {
+  mounted() {
+    this.$store.commit('setToolbarTitle', 'Dashbaord')
+  }
+}
+</script>
