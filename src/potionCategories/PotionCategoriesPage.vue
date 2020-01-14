@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row >
-      <v-col sm="12" lg="10" xl="7" class="text-right">
+      <v-col sm="12" xl="8" class="text-right">
         <v-btn color="primary">
           <v-icon left dark>mdi-plus</v-icon>
           Create
@@ -9,7 +9,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col sm="12" lg="10" xl="7">
+      <v-col sm="12" xl="8">
         <PotionCategoriesTable/>
       </v-col>
     </v-row>
