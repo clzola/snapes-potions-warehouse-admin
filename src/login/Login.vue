@@ -2,16 +2,16 @@
   <v-content>
     <v-container fluid>
       <v-row align="center" justify="center">
-        <v-col cols="12" sm="8" md="4">
-          <v-img src="../assets/slytherin_crest.png" max-height="360" contain></v-img>
+        <v-col cols="12" lg="6">
+          <v-img src="../assets/slytherin_crest.png" max-height="200" contain></v-img>
           <v-card class="elevation-12 mt-12">
             <v-toolbar color="primary" dark flat>
               <v-toolbar-title>Login form</v-toolbar-title>
             </v-toolbar>
             <v-card-text>
               <v-form>
-                <v-text-field outlined v-model="email" :error-messages="errorMessage" label="E-Mail Address" name="email" prepend-icon="mdi-email" type="email"></v-text-field>
-                <v-text-field outlined v-model="password" label="Password" name="password" prepend-icon="mdi-lock" type="password"></v-text-field>
+                <v-text-field dense outlined v-model="email" :error-messages="errorMessage" label="E-Mail Address" name="email" prepend-icon="mdi-email" type="email"></v-text-field>
+                <v-text-field dense outlined v-model="password" label="Password" name="password" prepend-icon="mdi-lock" type="password"></v-text-field>
               </v-form>
             </v-card-text>
              <v-card-actions>
