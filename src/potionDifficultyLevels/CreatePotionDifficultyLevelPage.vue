@@ -12,7 +12,7 @@
       <v-col sm="8" xl="4">
         <v-card>
           <v-card-text>
-            <v-form ref="form" v-model="valid">
+            <v-form ref="form">
               <v-text-field dense outlined v-model="name"
                 label="Name"
                 :error-messages="errors.name">
@@ -66,7 +66,6 @@ export default {
         })
     },
     resetErrorMessages() {
-      this.valid = true
       this.errors = {
         name: null,
         description: null
