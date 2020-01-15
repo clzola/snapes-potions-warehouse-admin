@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import ViewButton from '../../shared/components/TableViewButton'
-import EditButton from '../../shared/components/TableEditButton'
-import DeleteButton from '../../shared/components/TableDeleteButton'
+import ViewButton from '../../shared/components/buttons/TableViewButton'
+import EditButton from '../../shared/components/buttons/TableEditButton'
+import DeleteButton from '../../shared/components/buttons/TableDeleteButton'
 
 export default {
   components: {

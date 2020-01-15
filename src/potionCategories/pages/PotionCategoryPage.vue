@@ -1,16 +1,22 @@
 <template>
   <v-container fluid>
+    <v-snackbar top right v-model="snackbar">
+      {{ snackbarMessage }}
+      <v-btn color="green" text @click="snackbar = false">
+        Close
+      </v-btn>
+    </v-snackbar>
+
     <v-row v-if="loading">
       <v-col>
         <v-progress-linear indeterminate></v-progress-linear>
       </v-col>
     </v-row>
     <v-row v-if="!errorMessage">
-      <v-col>
-        <v-btn @click="navigateBack">
-          <v-icon left>mdi-arrow-left</v-icon>
-          Back
-        </v-btn>
+      <v-col class="pl-1">
+        <BackButton></BackButton>
+        <EditButton v-if="!loading" :to="`/potion-categories/${this.potionCategoryId}/edit`"></EditButton>
+        <DeleteButton v-if="!loading" @click="deletePotionCategory"></DeleteButton>
       </v-col>
     </v-row>
     <v-row v-if="!loading">
@@ -42,13 +48,24 @@
 </template>
 
 <script>
+import BackButton from '../../shared/components/buttons/BackButton'
+import EditButton from '../../shared/components/buttons/EditButton'
+import DeleteButton from '../../shared/components/buttons/DeleteButton'
+
 export default {
+  components: {
+    BackButton,
+    EditButton,
+    DeleteButton
+  },
   data() {
     return {
       loading: true,
       potionCategoryId: this.$route.params.id,
       potionCategory: {},
-      errorMessage: null
+      errorMessage: null,
+      snackbar: false,
+      snackbarMessage: null
     }
   },
   mounted() {
@@ -71,6 +88,18 @@ export default {
           this.loading = false
           this.errorMessage = error.message
         })
+    },
+    deletePotionCategory() {
+      this.$http
+        .post(`/api/potion-categories/${this.potionCategoryId}`, { _method: 'DELETE' })
+        .then(() => { this.$router.push('/potion-categories') })
+        .catch((error) => {
+          this.showSnackbar(error.message)
+        })
+    },
+    showSnackbar(message) {
+      this.snackbarMessage = message
+      this.snackbar = true
     }
   }
 }
