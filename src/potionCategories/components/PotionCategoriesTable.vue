@@ -8,26 +8,32 @@
     loading-text="Loading potion categories...">
 
     <template v-slot:item.actions="{ item }">
-      <v-btn text icon x-small class="mx-2" :to="`/potion-categories/${item.id}`">
-        <v-icon>mdi-eye</v-icon>
-      </v-btn>
-      <v-btn text icon x-small class="mx-2" :to="`/potion-categories/${item.id}/edit`">
-        <v-icon>mdi-pencil</v-icon>
-      </v-btn>
+      <ViewButton :to="`/potion-categories/${item.id}`"></ViewButton>
+      <EditButton :to="`/potion-categories/${item.id}/edit`"></EditButton>
+      <DeleteButton></DeleteButton>
     </template>
 
   </v-data-table>
 </template>
 
 <script>
+import ViewButton from '../../shared/components/TableViewButton'
+import EditButton from '../../shared/components/TableEditButton'
+import DeleteButton from '../../shared/components/TableDeleteButton'
+
 export default {
+  components: {
+    ViewButton,
+    EditButton,
+    DeleteButton
+  },
   data() {
     return {
       headers: [
         { text: 'ID', align: 'left', sortable: true, value: 'id' },
         { text: 'Name', align: 'left', sortable: true, value: 'name' },
         { text: 'Description', align: 'left', sortable: false, value: 'description' },
-        { text: '', sortable: false, value: 'actions' }
+        { text: '', align: 'right', sortable: false, value: 'actions' }
       ],
       loading: false,
       potionCategories: []
