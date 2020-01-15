@@ -8,7 +8,10 @@
     loading-text="Loading potion categories...">
 
     <template v-slot:item.actions="{ item }">
-      <v-btn text icon x-small :to="`/potion-categories/${item.id}/edit`">
+      <v-btn text icon x-small class="mx-2" :to="`/potion-categories/${item.id}`">
+        <v-icon>mdi-eye</v-icon>
+      </v-btn>
+      <v-btn text icon x-small class="mx-2" :to="`/potion-categories/${item.id}/edit`">
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
     </template>

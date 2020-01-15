@@ -8,7 +8,8 @@ import PotionsPage from '../potions/PotionsPage'
 import {
   PotionCategoriesPage,
   CreatePotionCategory,
-  EditPotionCategory
+  EditPotionCategory,
+  PotionCategoryPage
 } from '../potionCategories'
 
 Vue.use(VueRouter)
@@ -25,7 +26,9 @@ const routes = [
       { path: '/potions', component: PotionsPage },
       { path: '/potion-categories', component: PotionCategoriesPage },
       { path: '/potion-categories/create', component: CreatePotionCategory },
-      { path: '/potion-categories/:id/edit', component: EditPotionCategory }
+      { path: '/potion-categories/:id/edit', component: EditPotionCategory },
+      { path: '/potion-categories/:id', component: PotionCategoryPage }
+
     ]
   },
   {
