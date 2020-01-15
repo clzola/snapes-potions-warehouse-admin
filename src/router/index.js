@@ -5,15 +5,8 @@ import Admin from '../admin/Admin'
 import Login from '../login/Login'
 import Dashboard from '../dashbaord/Dashboard'
 import PotionsPage from '../potions/PotionsPage'
-
 import potionCategoriesRoutes from '../potionCategories/routes'
-
-import {
-  PotionDifficultyLevelsPage,
-  CreatePotionDifficultyLevelPage,
-  PotionDifficultyLevelPage,
-  EditPotionDifficultyLevelPage
-} from '../potionDifficultyLevels'
+import potionDifficultyLevelsRoutes from '../potionDifficultyLevels/routes'
 
 Vue.use(VueRouter)
 
@@ -26,10 +19,7 @@ const routes = [
       { path: '', component: Dashboard },
       { path: '/potions', component: PotionsPage },
       ...potionCategoriesRoutes,
-      { path: '/potion-difficulty-levels', component: PotionDifficultyLevelsPage },
-      { path: '/potion-difficulty-levels/create', component: CreatePotionDifficultyLevelPage },
-      { path: '/potion-difficulty-levels/:id', component: PotionDifficultyLevelPage },
-      { path: '/potion-difficulty-levels/:id/edit', component: EditPotionDifficultyLevelPage }
+      ...potionDifficultyLevelsRoutes
     ]
   },
   {
