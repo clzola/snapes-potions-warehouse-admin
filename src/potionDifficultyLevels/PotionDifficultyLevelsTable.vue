@@ -20,7 +20,7 @@
       <v-btn text icon x-small class="mx-2" color="green" :to="`/potion-difficulty-levels/${item.id}/edit`">
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
-      <v-btn text icon x-small class="mx-2" color="error">
+      <v-btn text icon x-small class="mx-2" color="error" @click="deleteItem(item)">
         <v-icon>mdi-delete</v-icon>
       </v-btn>
     </template>
@@ -82,6 +82,12 @@ export default {
             .filter(l => l.id !== level.id && l.order >= oldOrder && l.order <= level.order)
             .forEach(l => { l.order -= 1 })
           this.difficultyLevels = this.difficultyLevels.sort((a, b) => a.order <= b.order ? -1 : 1)
+        })
+    },
+    deleteItem(level) {
+      this.$http.post(`/api/potion-difficulty-levels/${level.id}`, { _method: 'DELETE' })
+        .then(() => {
+          this.difficultyLevels = this.difficultyLevels.filter(l => l.id !== level.id)
         })
     }
   }
