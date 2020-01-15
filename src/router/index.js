@@ -16,7 +16,8 @@ import {
 import {
   PotionDifficultyLevelsPage,
   CreatePotionDifficultyLevelPage,
-  PotionDifficultyLevelPage
+  PotionDifficultyLevelPage,
+  EditPotionDifficultyLevelPage
 } from '../potionDifficultyLevels'
 
 Vue.use(VueRouter)
@@ -37,7 +38,8 @@ const routes = [
       { path: '/potion-categories/:id', component: PotionCategoryPage },
       { path: '/potion-difficulty-levels', component: PotionDifficultyLevelsPage },
       { path: '/potion-difficulty-levels/create', component: CreatePotionDifficultyLevelPage },
-      { path: '/potion-difficulty-levels/:id', component: PotionDifficultyLevelPage }
+      { path: '/potion-difficulty-levels/:id', component: PotionDifficultyLevelPage },
+      { path: '/potion-difficulty-levels/:id/edit', component: EditPotionDifficultyLevelPage }
     ]
   },
   {
