@@ -2,7 +2,7 @@
   <v-content>
     <v-container fluid>
       <v-row align="center" justify="center">
-        <v-col cols="12" lg="6">
+        <v-col cols="12" lg="6" xl="3">
           <v-img src="../assets/slytherin_crest.png" max-height="200" contain></v-img>
           <v-card class="elevation-12 mt-12">
             <v-toolbar color="primary" dark flat>
