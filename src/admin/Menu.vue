@@ -14,7 +14,7 @@
         </template>
 
         <MenuItem title="Potion Categories" href="/potion-categories"></MenuItem>
-        <MenuItem title="Difficulty Levels"></MenuItem>
+        <MenuItem title="Difficulty Levels" href="/potion-difficulty-levels"></MenuItem>
       </v-list-group>
     </v-list>
   </div>
