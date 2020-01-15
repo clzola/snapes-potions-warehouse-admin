@@ -68,7 +68,13 @@ export default {
       if (!this.$refs.form.validate()) return
       let { name, description } = this
       this.$http.post('/api/potion-categories', { name, description })
-        .then(() => this.$router.go(-1))
+        .then(() => {
+          this.$router.go(-1)
+          this.$store.commit('setAlert', {
+            status: 'success',
+            message: `Successfully created new Potion Category named ${name}!`
+          })
+        })
         .catch(error => {
           if (error.response.status === 422) {
             let errors = error.response.data.errors

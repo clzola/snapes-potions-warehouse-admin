@@ -92,7 +92,13 @@ export default {
     deletePotionCategory() {
       this.$http
         .post(`/api/potion-categories/${this.potionCategoryId}`, { _method: 'DELETE' })
-        .then(() => { this.$router.push('/potion-categories') })
+        .then(() => {
+          this.$router.push('/potion-categories')
+          this.$store.commit('setAlert', {
+            status: 'success',
+            message: `Potion Category '${this.potionCategory.name}' has been successfully deleted!`
+          })
+        })
         .catch((error) => {
           this.showSnackbar(error.message)
         })

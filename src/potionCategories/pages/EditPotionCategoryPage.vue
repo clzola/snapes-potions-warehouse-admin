@@ -61,7 +61,13 @@ export default {
       let { name, description } = this.potionCategory
       this.$http
         .post(`/api/potion-categories/${this.potionCategory.id}`, { name, description, _method: 'PUT' })
-        .then(() => this.$router.go(-1))
+        .then(() => {
+          this.$router.go(-1)
+          this.$store.commit('setAlert', {
+            status: 'success',
+            message: `Potion Category has been successfully updated!`
+          })
+        })
     }
   }
 }

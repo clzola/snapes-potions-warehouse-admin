@@ -60,9 +60,16 @@ export default {
           this.potionCategories = this.potionCategories.filter(
             (category) => category.id !== potionCategory.id
           )
+          this.$store.commit('setAlert', {
+            status: 'success',
+            message: `Potion Category '${potionCategory.name}' has been successfully deleted!`
+          })
         })
-        .catch(() => {
-          // TODO: Handle error
+        .catch((error) => {
+          this.$store.commit('setAlert', {
+            status: 'error',
+            message: error.message
+          })
         })
     }
   }
