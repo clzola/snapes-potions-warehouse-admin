@@ -5,7 +5,7 @@ import Admin from '../admin/Admin'
 import Login from '../login/Login'
 import Dashboard from '../dashbaord/Dashboard'
 import PotionsPage from '../potions/PotionsPage'
-import PotionCategoriesPage from '../potionCategories/PotionCategoriesPage'
+import { PotionCategoriesPage, CreatePotionCategory } from '../potionCategories'
 
 Vue.use(VueRouter)
 
@@ -19,7 +19,8 @@ const routes = [
     children: [
       { path: '', component: Dashboard },
       { path: '/potions', component: PotionsPage },
-      { path: '/potion-categories', component: PotionCategoriesPage }
+      { path: '/potion-categories', component: PotionCategoriesPage },
+      { path: '/potion-categories/create', component: CreatePotionCategory }
     ]
   },
   {

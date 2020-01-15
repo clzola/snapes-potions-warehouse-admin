@@ -2,9 +2,9 @@
   <v-container fluid>
     <v-row >
       <v-col sm="12" xl="8" class="text-right">
-        <v-btn color="primary">
+        <v-btn to="/potion-categories/create" color="primary">
           <v-icon left dark>mdi-plus</v-icon>
-          Create
+          Add
         </v-btn>
       </v-col>
     </v-row>
