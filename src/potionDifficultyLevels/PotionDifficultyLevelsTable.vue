@@ -36,7 +36,7 @@ export default {
         { text: 'ID', align: 'left', sortable: true, value: 'id' },
         { text: 'Name', align: 'left', sortable: true, value: 'name' },
         { text: 'Description', align: 'left', sortable: false, value: 'description' },
-        { text: '', sortable: false, value: 'actions' }
+        { text: '', align: 'right', sortable: false, value: 'actions' }
       ],
       loading: false,
       difficultyLevels: []
