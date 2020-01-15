@@ -5,8 +5,15 @@
     :hide-default-footer="true"
     :loading="loading"
     :items="potionCategories"
-    loading-text="Loading potion categories..."
-  />
+    loading-text="Loading potion categories...">
+
+    <template v-slot:item.actions="{ item }">
+      <v-btn text icon x-small :to="`/potion-categories/${item.id}/edit`">
+        <v-icon>mdi-pencil</v-icon>
+      </v-btn>
+    </template>
+
+  </v-data-table>
 </template>
 
 <script>
@@ -16,7 +23,8 @@ export default {
       headers: [
         { text: 'ID', align: 'left', sortable: true, value: 'id' },
         { text: 'Name', align: 'left', sortable: true, value: 'name' },
-        { text: 'Description', align: 'left', sortable: false, value: 'description' }
+        { text: 'Description', align: 'left', sortable: false, value: 'description' },
+        { text: '', sortable: false, value: 'actions' }
       ],
       loading: false,
       potionCategories: []
