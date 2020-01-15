@@ -10,7 +10,7 @@
     <template v-slot:item.actions="{ item }">
       <ViewButton :to="`/potion-categories/${item.id}`"></ViewButton>
       <EditButton :to="`/potion-categories/${item.id}/edit`"></EditButton>
-      <DeleteButton></DeleteButton>
+      <DeleteButton @click="deletePotionCategory(item)"></DeleteButton>
     </template>
 
   </v-data-table>
@@ -52,6 +52,18 @@ export default {
         })
         this.loading = false
       })
+    },
+    deletePotionCategory(potionCategory) {
+      this.$http
+        .post(`/api/potion-categories/${potionCategory.id}`, { _method: 'DELETE' })
+        .then(() => {
+          this.potionCategories = this.potionCategories.filter(
+            (category) => category.id !== potionCategory.id
+          )
+        })
+        .catch(() => {
+          // TODO: Handle error
+        })
     }
   }
 }
