@@ -26,6 +26,7 @@
       </v-menu>
     </v-app-bar>
     <v-content>
+      <Alert/>
       <router-view></router-view>
     </v-content>
   </div>
@@ -34,11 +35,13 @@
 <script>
 import { mapState } from 'vuex'
 import Menu from './Menu'
+import Alert from '../shared/components/Alert'
 
 export default {
   name: 'app-admin',
   components: {
-    Menu
+    Menu,
+    Alert
   },
   data() {
     return {
@@ -48,8 +51,16 @@ export default {
   },
   computed: {
     ...mapState({
-      toolbarTitle: state => state.admin.toolbarTitle
-    })
+      toolbarTitle: state => state.admin.toolbarTitle,
+      alert: state => state.admin.alert
+    }),
+    alertClasses() {
+      return {
+        'green': this.alert.status === 'success',
+        'red': this.alert.status === 'error',
+        'yellow': this.alert.status === 'warning'
+      }
+    }
   },
   methods: {
     logout() {
