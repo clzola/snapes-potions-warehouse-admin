@@ -8,8 +8,8 @@ import PotionsPage from '../potions/PotionsPage'
 
 import {
   PotionCategoriesPage,
-  CreatePotionCategory,
-  EditPotionCategory,
+  CreatePotionCategoryPage,
+  EditPotionCategoryPage,
   PotionCategoryPage
 } from '../potionCategories'
 
@@ -33,8 +33,8 @@ const routes = [
       { path: '', component: Dashboard },
       { path: '/potions', component: PotionsPage },
       { path: '/potion-categories', component: PotionCategoriesPage },
-      { path: '/potion-categories/create', component: CreatePotionCategory },
-      { path: '/potion-categories/:id/edit', component: EditPotionCategory },
+      { path: '/potion-categories/create', component: CreatePotionCategoryPage },
+      { path: '/potion-categories/:id/edit', component: EditPotionCategoryPage },
       { path: '/potion-categories/:id', component: PotionCategoryPage },
       { path: '/potion-difficulty-levels', component: PotionDifficultyLevelsPage },
       { path: '/potion-difficulty-levels/create', component: CreatePotionDifficultyLevelPage },

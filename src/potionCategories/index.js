@@ -1,11 +1,11 @@
 import PotionCategoriesPage from './PotionCategoriesPage'
-import CreatePotionCategory from './CreatePotionCategory'
-import EditPotionCategory from './EditPotionCategory'
+import CreatePotionCategoryPage from './CreatePotionCategoryPage'
+import EditPotionCategoryPage from './EditPotionCategoryPage'
 import PotionCategoryPage from './PotionCategoryPage'
 
 export {
   PotionCategoriesPage,
-  CreatePotionCategory,
-  EditPotionCategory,
+  CreatePotionCategoryPage,
+  EditPotionCategoryPage,
   PotionCategoryPage
 }
