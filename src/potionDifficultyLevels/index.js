@@ -1,7 +1,7 @@
-import PotionDifficultyLevelsPage from './PotionDifficultyLevelsPage'
-import CreatePotionDifficultyLevelPage from './CreatePotionDifficultyLevelPage'
-import PotionDifficultyLevelPage from './PotionDifficultyLevelPage'
-import EditPotionDifficultyLevelPage from './EditPotionDifficultyLevelPage'
+import PotionDifficultyLevelsPage from './pages/PotionDifficultyLevelsPage'
+import CreatePotionDifficultyLevelPage from './pages/CreatePotionDifficultyLevelPage'
+import PotionDifficultyLevelPage from './pages/PotionDifficultyLevelPage'
+import EditPotionDifficultyLevelPage from './pages/EditPotionDifficultyLevelPage'
 import routes from './routes'
 
 export {

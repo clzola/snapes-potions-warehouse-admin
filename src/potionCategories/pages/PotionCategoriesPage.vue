@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row >
       <v-col sm="12" xl="8" class="text-right">
-        <v-btn to="/potion-difficulty-levels/create" color="primary">
+        <v-btn to="/potion-categories/create" color="primary">
           <v-icon left dark>mdi-plus</v-icon>
           Add
         </v-btn>
@@ -10,20 +10,21 @@
     </v-row>
     <v-row>
       <v-col sm="12" xl="8">
-        <PotionDifficultyLevelsTable/>
+        <PotionCategoriesTable/>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import PotionDifficultyLevelsTable from './PotionDifficultyLevelsTable'
+import PotionCategoriesTable from '../components/PotionCategoriesTable'
+
 export default {
   components: {
-    PotionDifficultyLevelsTable
+    PotionCategoriesTable
   },
   mounted() {
-    this.$store.commit('setToolbarTitle', 'Potion Difficulty Levels')
+    this.$store.commit('setToolbarTitle', 'Potion Categories')
   }
 }
 </script>
