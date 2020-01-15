@@ -6,12 +6,7 @@ import Login from '../login/Login'
 import Dashboard from '../dashbaord/Dashboard'
 import PotionsPage from '../potions/PotionsPage'
 
-import {
-  PotionCategoriesPage,
-  CreatePotionCategoryPage,
-  EditPotionCategoryPage,
-  PotionCategoryPage
-} from '../potionCategories'
+import potionCategoriesRoutes from '../potionCategories/routes'
 
 import {
   PotionDifficultyLevelsPage,
@@ -26,16 +21,11 @@ const routes = [
   {
     path: '/',
     component: Admin,
-    meta: {
-      requiresAuth: true
-    },
+    meta: { requiresAuth: true },
     children: [
       { path: '', component: Dashboard },
       { path: '/potions', component: PotionsPage },
-      { path: '/potion-categories', component: PotionCategoriesPage },
-      { path: '/potion-categories/create', component: CreatePotionCategoryPage },
-      { path: '/potion-categories/:id/edit', component: EditPotionCategoryPage },
-      { path: '/potion-categories/:id', component: PotionCategoryPage },
+      ...potionCategoriesRoutes,
       { path: '/potion-difficulty-levels', component: PotionDifficultyLevelsPage },
       { path: '/potion-difficulty-levels/create', component: CreatePotionDifficultyLevelPage },
       { path: '/potion-difficulty-levels/:id', component: PotionDifficultyLevelPage },
@@ -63,6 +53,8 @@ const routes = [
   //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   // }
 ]
+
+console.log(routes)
 
 const router = new VueRouter({
   mode: 'history',
