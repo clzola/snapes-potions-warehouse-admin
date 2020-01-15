@@ -62,9 +62,12 @@ export default {
       let data = { _method: 'PATCH', order: level.order - 1 }
       this.$http.post(`/api/potion-difficulty-levels/${level.id}`, data)
         .then((response) => {
-          // level.order -= 1
-          // this.difficultyLevels = this.difficultyLevels.sort((a, b) => a.order <= b.order)
-          this.loadPotionDifficultyLevels()
+          let oldOrder = level.order
+          level.order -= 1
+          this.difficultyLevels
+            .filter(l => l.id !== level.id && l.order >= level.order && l.order <= oldOrder)
+            .forEach(l => { l.order += 1 })
+          this.difficultyLevels = this.difficultyLevels.sort((a, b) => a.order <= b.order ? -1 : 1)
         })
     },
     moveDown(level) {
@@ -73,9 +76,12 @@ export default {
       let data = { _method: 'PATCH', order: level.order + 1 }
       this.$http.post(`/api/potion-difficulty-levels/${level.id}`, data)
         .then((response) => {
-          // level.order -= 1
-          // this.difficultyLevels = this.difficultyLevels.sort((a, b) => a.order <= b.order)
-          this.loadPotionDifficultyLevels()
+          let oldOrder = level.order
+          level.order += 1
+          this.difficultyLevels
+            .filter(l => l.id !== level.id && l.order >= oldOrder && l.order <= level.order)
+            .forEach(l => { l.order -= 1 })
+          this.difficultyLevels = this.difficultyLevels.sort((a, b) => a.order <= b.order ? -1 : 1)
         })
     }
   }
