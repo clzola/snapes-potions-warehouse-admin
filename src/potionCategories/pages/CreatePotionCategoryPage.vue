@@ -76,13 +76,12 @@ export default {
           })
         })
         .catch(error => {
-          if (error.response.status === 422) {
+          if (error.response && error.response.status === 422) {
             let errors = error.response.data.errors
-            this.errors.name = errors.name || null
-            this.errors.description = errors.description || null
+            this.errors.name = errors.name[0] || null
+            this.errors.description = errors.description[0] || null
             this.valid = false
           }
-          console.log([error])
         })
     },
     reset() {

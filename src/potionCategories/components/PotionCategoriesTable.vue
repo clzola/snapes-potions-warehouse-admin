@@ -14,7 +14,13 @@
     </template>
 
     <template v-if="error" v-slot:no-data>
-      <span class="red--text">{{ error }}</span>
+      <div class="py-8">
+        <span class="red--text d-block">{{ error }}</span>
+        <v-btn small color="light-blue" dark class="mt-3" @click="loadPotionCategories">
+          <v-icon left>mdi-refresh</v-icon>
+          Reload
+        </v-btn>
+      </div>
     </template>
 
   </v-data-table>

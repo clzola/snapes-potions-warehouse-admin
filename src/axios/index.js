@@ -32,7 +32,6 @@ httpClient.interceptors.request.use(
 httpClient.interceptors.response.use(
   (response) => { return response },
   (error) => {
-    console.log('First interceptor')
     const originalRequest = error.config
 
     if (!error.response) {
@@ -51,8 +50,6 @@ httpClient.interceptors.response.use(
       return Promise.reject(error)
     }
 
-    console.log(['interceptor', error])
-
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true
       return store.dispatch('refreshAccessToken').then(() => httpClient(originalRequest))
@@ -67,6 +64,9 @@ httpClient.interceptors.response.use(
   (error) => {
     if (error.message === 'Network Error') {
       return Promise.reject(new Error('Service is not avialbel. Please check your internet connection...'))
+    }
+    if (error.response && error.response.status === 422) {
+      return Promise.reject(error)
     }
     if (error.response && error.response.data.message) {
       return Promise.reject(new Error(error.response.data.message))
