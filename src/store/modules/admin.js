@@ -1,9 +1,6 @@
 const state = {
   toolbarTitle: '',
-  alert: {
-    status: 'error',
-    message: 'Test message'
-  }
+  alert: null
 }
 
 const mutations = {
@@ -17,10 +14,7 @@ const mutations = {
     }
   },
   dismissAlert(state) {
-    state.alert = {
-      status: 'none',
-      message: null
-    }
+    state.alert = null
   }
 }
 

@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div v-if="alert.message" class="alert px-4 py-2 d-flex align-center justify-center" :class="alertClasses">
+    <div v-if="alert" class="alert px-4 py-2 d-flex align-center justify-center" :class="alertClasses">
       <div class="d-inline-block mx-auto" :class="{'white--text': alert.status !== 'warning' }">
         {{ alert.message }}
       </div>

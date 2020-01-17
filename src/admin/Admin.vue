@@ -51,16 +51,8 @@ export default {
   },
   computed: {
     ...mapState({
-      toolbarTitle: state => state.admin.toolbarTitle,
-      alert: state => state.admin.alert
-    }),
-    alertClasses() {
-      return {
-        'green': this.alert.status === 'success',
-        'red': this.alert.status === 'error',
-        'yellow': this.alert.status === 'warning'
-      }
-    }
+      toolbarTitle: state => state.admin.toolbarTitle
+    })
   },
   methods: {
     logout() {
