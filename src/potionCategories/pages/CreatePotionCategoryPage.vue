@@ -23,7 +23,7 @@
                 :rules="rules.description"
                 :error-messages="errors.description">
               </v-textarea>
-              <v-btn @click="save" color="primary">
+              <v-btn :loading="saving" @click="save" color="primary">
                 <v-icon left>mdi-content-save</v-icon>
                 Save
               </v-btn>
@@ -40,6 +40,7 @@ export default {
   data() {
     return {
       valid: true,
+      saving: false,
       name: null,
       description: null,
       rules: {
@@ -66,7 +67,10 @@ export default {
     save() {
       this.resetErrorMessages()
       if (!this.$refs.form.validate()) return
+
+      this.saving = true
       let { name, description } = this
+
       this.$http.post('/api/potion-categories', { name, description })
         .then(() => {
           this.$router.go(-1)
@@ -83,6 +87,7 @@ export default {
             this.valid = false
           }
         })
+        .finally(() => { this.saving = false })
     },
     reset() {
       this.$refs.form.reset()
