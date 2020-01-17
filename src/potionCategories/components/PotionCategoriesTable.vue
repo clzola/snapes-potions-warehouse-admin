@@ -13,6 +13,10 @@
       <DeleteButton @click="deletePotionCategory(item)"></DeleteButton>
     </template>
 
+    <template v-if="error" v-slot:no-data>
+      <span class="red--text">{{ error }}</span>
+    </template>
+
   </v-data-table>
 </template>
 
@@ -36,6 +40,7 @@ export default {
         { text: '', align: 'right', sortable: false, value: 'actions' }
       ],
       loading: false,
+      error: null,
       potionCategories: []
     }
   },
@@ -45,12 +50,15 @@ export default {
   methods: {
     loadPotionCategories() {
       this.loading = true
-      this.$http.get('/api/potion-categories').then(response => {
-        this.potionCategories = response.data.data.map((category) => {
-          category.description = (category.description.length > 80) ? category.description.substr(0, 79) + '...' : category.description
-          return category
-        })
-        this.loading = false
+      this.$http.get('/api/potion-categories')
+        .then(this.onPotionCategoriesResponse)
+        .catch((error) => { this.error = error.message })
+        .finally(() => { this.loading = false })
+    },
+    onPotionCategoriesResponse(response) {
+      this.potionCategories = response.data.data.map((category) => {
+        category.description = (category.description.length > 80) ? category.description.substr(0, 79) + '...' : category.description
+        return category
       })
     },
     deletePotionCategory(potionCategory) {
