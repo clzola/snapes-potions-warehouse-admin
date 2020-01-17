@@ -1,12 +1,5 @@
 <template>
   <v-container fluid>
-    <v-snackbar top right v-model="snackbar">
-      {{ snackbarMessage }}
-      <v-btn color="green" text @click="snackbar = false">
-        Close
-      </v-btn>
-    </v-snackbar>
-
     <v-row v-if="loading">
       <v-col>
         <v-progress-linear indeterminate></v-progress-linear>
@@ -17,6 +10,7 @@
         <BackButton></BackButton>
         <EditButton v-if="!loading" :to="`/potion-categories/${this.potionCategoryId}/edit`"></EditButton>
         <DeleteButton v-if="!loading" @click="deletePotionCategory"></DeleteButton>
+        <ConfirmDeleteActionDialog ref="deleteDialog"/>
       </v-col>
     </v-row>
     <v-row v-if="!loading">
@@ -51,21 +45,21 @@
 import BackButton from '../../shared/components/buttons/BackButton'
 import EditButton from '../../shared/components/buttons/EditButton'
 import DeleteButton from '../../shared/components/buttons/DeleteButton'
+import ConfirmDeleteActionDialog from '../../shared/components/dialogs/ConfirmDeleteActionDialog'
 
 export default {
   components: {
     BackButton,
     EditButton,
-    DeleteButton
+    DeleteButton,
+    ConfirmDeleteActionDialog
   },
   data() {
     return {
       loading: true,
       potionCategoryId: this.$route.params.id,
       potionCategory: {},
-      errorMessage: null,
-      snackbar: false,
-      snackbarMessage: null
+      errorMessage: null
     }
   },
   mounted() {
@@ -90,22 +84,23 @@ export default {
         })
     },
     deletePotionCategory() {
-      this.$http
-        .post(`/api/potion-categories/${this.potionCategoryId}`, { _method: 'DELETE' })
-        .then(() => {
-          this.$router.push('/potion-categories')
-          this.$store.commit('setAlert', {
-            status: 'success',
-            message: `Potion Category '${this.potionCategory.name}' has been successfully deleted!`
-          })
-        })
-        .catch((error) => {
-          this.showSnackbar(error.message)
-        })
+      this.$refs.deleteDialog.title = 'Delete Potion Category?'
+      this.$refs.deleteDialog.message = `Are you sure you want to delete potion category named <b>${this.potionCategory.name}</b>?`
+
+      this.$refs.deleteDialog.onConfirmed = () => {
+        return this.$http
+          .post(`/api/potion-categories/${this.potionCategoryId}`, { _method: 'DELETE' })
+          .then(() => this.onPotionCategoryDeleted(this.potionCategory))
+      }
+
+      this.$refs.deleteDialog.show()
     },
-    showSnackbar(message) {
-      this.snackbarMessage = message
-      this.snackbar = true
+    onPotionCategoryDeleted(potionCategory) {
+      this.$router.push('/potion-categories')
+      this.$store.commit('setAlert', {
+        status: 'success',
+        message: `Potion Category '${potionCategory.name}' has been successfully deleted!`
+      })
     }
   }
 }
