@@ -70,9 +70,6 @@ export default {
     this.loadPotionCategory()
   },
   methods: {
-    navigateBack() {
-      this.$router.go(-1)
-    },
     loadPotionCategory() {
       this.setLoading(true)
       this.$http.get(`/api/potion-categories/${this.potionCategoryId}`)

@@ -55,9 +55,6 @@ export default {
     this.loadPotionCategory()
   },
   methods: {
-    navigateBack() {
-      this.$router.go(-1)
-    },
     loadPotionCategory() {
       this.loading = true
       this.$http
