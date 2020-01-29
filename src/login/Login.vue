@@ -3,7 +3,7 @@
     <v-container fluid>
       <v-row align="center" justify="center">
         <v-col cols="12" lg="6" xl="3">
-          <v-img src="../assets/slytherin_crest.png" max-height="200" contain></v-img>
+          <v-img src="../assets/1.jpg" max-height="300" contain></v-img>
           <v-card class="elevation-12 mt-12">
             <v-toolbar color="primary" dark flat>
               <v-toolbar-title>Login form</v-toolbar-title>
@@ -52,8 +52,11 @@ export default {
     },
     onLoginError(error) {
       let errorMessage = 'Unknown error occured, please try again later...'
-      if (error.response.status === 401) {
+      if (error.response && error.response.status === 401) {
         errorMessage = 'Provided credentials does not match any in the database.'
+      }
+      else if (error && error.message) {
+        errorMessage = error.message
       }
 
       this.setErrorMessage(errorMessage)
