@@ -63,7 +63,7 @@ httpClient.interceptors.response.use(
   (response) => { return response },
   (error) => {
     if (error.message === 'Network Error') {
-      return Promise.reject(new Error('Service is not avialbel. Please check your internet connection...'))
+      return Promise.reject(new Error('Service is not available. Please check your internet connection...'))
     }
     if (error.response && error.response.status === 422) {
       return Promise.reject(error)
