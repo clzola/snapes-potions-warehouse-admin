@@ -1,44 +1,52 @@
 <template>
-  <v-container fluid>
-    <v-row>
-      <v-col>
-        <v-btn @click="navigateBack">
-          <v-icon left>mdi-arrow-left</v-icon>
-          Back
-        </v-btn>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col sm="6" xl="4">
-        <v-card>
-          <v-card-text>
-            <v-form v-model="valid" ref="form">
-              <v-text-field dense outlined v-model="potionCategory.name"
-                label="Name"
-                :error-messages="errors.name"
-                :rules="rules.name">
-              </v-text-field>
-              <v-textarea dense outlined v-model="potionCategory.description"
-                label="Description"
-                :error-messages="errors.description"
-                :rules="rules.description">
-              </v-textarea>
-              <v-btn :loading="saving" @click="save" color="primary">
-                <v-icon left>mdi-content-save</v-icon>
-                Save
-              </v-btn>
-            </v-form>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+  <PageLoader :loading="loading" :error="errorMessage" @reload="loadPotionCategory">
+    <div>
+      <v-row>
+        <v-col class="pl-1">
+          <BackButton></BackButton>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col sm="6" xl="4">
+          <v-card>
+            <v-card-text>
+              <v-form v-model="valid" ref="form">
+                <v-text-field dense outlined v-model="potionCategory.name"
+                  label="Name"
+                  :error-messages="errors.name"
+                  :rules="rules.name">
+                </v-text-field>
+                <v-textarea dense outlined v-model="potionCategory.description"
+                  label="Description"
+                  :error-messages="errors.description"
+                  :rules="rules.description">
+                </v-textarea>
+                <v-btn :loading="saving" @click="save" color="primary">
+                  <v-icon left>mdi-content-save</v-icon>
+                  Save
+                </v-btn>
+              </v-form>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </div>
+  </PageLoader>
 </template>
 
 <script>
+import BackButton from '../../shared/components/buttons/BackButton'
+import PageLoader from '../../shared/components/PageLoader'
+
 export default {
+  components: {
+    BackButton,
+    PageLoader
+  },
   data() {
     return {
+      loading: true,
+      errorMessage: null,
       valid: true,
       potionCategoryId: this.$route.params.id,
       potionCategory: {},
@@ -59,15 +67,18 @@ export default {
   },
   mounted() {
     this.$store.commit('setToolbarTitle', 'Edit Potion Category')
-
-    this.$http.get(`/api/potion-categories/${this.potionCategoryId}`)
-      .then(response => {
-        this.potionCategory = response.data.data
-      })
+    this.loadPotionCategory()
   },
   methods: {
     navigateBack() {
       this.$router.go(-1)
+    },
+    loadPotionCategory() {
+      this.setLoading(true)
+      this.$http.get(`/api/potion-categories/${this.potionCategoryId}`)
+        .then(response => { this.potionCategory = response.data.data })
+        .catch(e => this.setError(e.message))
+        .finally(() => this.setLoading(false))
     },
     save() {
       if (this.$store.state.admin.alert) {
@@ -104,6 +115,12 @@ export default {
         status: 'success',
         message: `Potion Category has been successfully updated!`
       })
+    },
+    setLoading(value) {
+      this.loading = value
+    },
+    setError(message) {
+      this.errorMessage = message
     }
   }
 }
