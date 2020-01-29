@@ -2,10 +2,7 @@
   <v-container fluid>
     <v-row>
       <v-col>
-        <v-btn @click="navigateBack">
-          <v-icon left>mdi-arrow-left</v-icon>
-          Back
-        </v-btn>
+        <BackButton></BackButton>
       </v-col>
     </v-row>
     <v-row>
@@ -36,7 +33,12 @@
 </template>
 
 <script>
+import BackButton from '../../shared/components/buttons/BackButton'
+
 export default {
+  components: {
+    BackButton
+  },
   data() {
     return {
       valid: true,
@@ -61,9 +63,6 @@ export default {
     this.$store.commit('setToolbarTitle', 'Add New Potion Category')
   },
   methods: {
-    navigateBack() {
-      this.$router.go(-1)
-    },
     save() {
       this.resetErrorMessages()
       if (!this.$refs.form.validate()) return
