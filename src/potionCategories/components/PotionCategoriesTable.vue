@@ -8,6 +8,10 @@
       :items="potionCategories"
       loading-text="Loading potion categories...">
 
+      <template v-slot:item.description="{ item }">
+        {{ (item.description.length > 80) ? item.description.substr(0, 79) + '...' : item.description }}
+      </template>
+
       <template v-slot:item.actions="{ item }">
         <ViewButton :to="`/potion-categories/${item.id}`"></ViewButton>
         <EditButton :to="`/potion-categories/${item.id}/edit`"></EditButton>
@@ -66,10 +70,7 @@ export default {
         .finally(() => { this.loading = false })
     },
     onPotionCategoriesResponse(response) {
-      this.potionCategories = response.data.data.map((category) => {
-        category.description = (category.description.length > 80) ? category.description.substr(0, 79) + '...' : category.description
-        return category
-      })
+      this.potionCategories = response.data.data
     },
     deletePotionCategory(potionCategory) {
       this.$refs.deleteDialog.title = 'Delete Potion Category?'
