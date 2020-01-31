@@ -6,7 +6,7 @@
       <MenuItem icon="mdi-view-dashboard" title="Dashbaord" href="/"></MenuItem>
       <MenuItem icon="mdi-flask-empty" title="Potions" href="/potions"></MenuItem>
       <MenuItem icon="mdi-chart-bubble" title="Ingredients"></MenuItem>
-      <MenuItem icon="mdi-account-multiple" title="Users"></MenuItem>
+      <MenuItem icon="mdi-account-multiple" title="Users" href="/users"></MenuItem>
 
       <v-list-group prepend-icon="mdi-settings">
         <template v-slot:activator>

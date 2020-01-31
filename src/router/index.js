@@ -5,6 +5,7 @@ import Admin from '../admin/Admin'
 import Login from '../login/Login'
 import Dashboard from '../dashbaord/Dashboard'
 import PotionsPage from '../potions/PotionsPage'
+import usersRoutes from '../users/routes'
 import potionCategoriesRoutes from '../potionCategories/routes'
 import potionDifficultyLevelsRoutes from '../potionDifficultyLevels/routes'
 
@@ -18,6 +19,7 @@ const routes = [
     children: [
       { path: '', component: Dashboard },
       { path: '/potions', component: PotionsPage },
+      ...usersRoutes,
       ...potionCategoriesRoutes,
       ...potionDifficultyLevelsRoutes
     ]
