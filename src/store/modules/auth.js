@@ -31,16 +31,11 @@ const actions = {
     })
   },
   refreshAccessToken({ commit }) {
-    return new Promise((resolve, reject) => {
-      axios.post('/auth/token/refresh')
-        .then((response) => {
-          commit('refreshToken', response.data.access_token)
-          return resolve()
-        })
-        .error((error) => {
-          reject(error)
-        })
-    })
+    return axios.post('/auth/token/refresh')
+      .then((response) => {
+        commit('refreshToken', response.data.access_token)
+        return response.data.access_token
+      })
   },
   logout({ commit }) {
     return new Promise((resolve, reject) => {

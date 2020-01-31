@@ -52,7 +52,10 @@ httpClient.interceptors.response.use(
 
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true
-      return store.dispatch('refreshAccessToken').then(() => httpClient(originalRequest))
+      return store.dispatch('refreshAccessToken').then((accessToken) => {
+        originalRequest.headers['Authorization'] = `Bearer ${accessToken}`
+        return httpClient(originalRequest)
+      })
     }
 
     return Promise.reject(error)
