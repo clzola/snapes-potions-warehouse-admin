@@ -3,7 +3,7 @@
     <v-container fluid>
       <v-row align="center" justify="center">
         <v-col cols="12" lg="6" xl="3">
-          <v-img src="../assets/1.jpg" max-height="300" contain></v-img>
+          <v-img src="../assets/logo.svg" max-height="300" contain></v-img>
           <v-card class="elevation-12 mt-12">
             <v-toolbar color="primary" dark flat>
               <v-toolbar-title>Login form</v-toolbar-title>
