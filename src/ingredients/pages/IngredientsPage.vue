@@ -8,11 +8,19 @@
         </v-btn>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col sm="12" xl="8">
+        <IngredientsDataTable/>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
+import IngredientsDataTable from '../components/IngredientsDataTable'
+
 export default {
+  components: { IngredientsDataTable },
   mounted() {
     this.$store.commit('setToolbarTitle', 'Ingredients')
   }
