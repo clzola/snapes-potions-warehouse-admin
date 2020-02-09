@@ -5,7 +5,7 @@
     <v-list dense>
       <MenuItem icon="mdi-view-dashboard" title="Dashbaord" href="/"></MenuItem>
       <MenuItem icon="mdi-flask-empty" title="Potions" href="/potions"></MenuItem>
-      <MenuItem icon="mdi-chart-bubble" title="Ingredients"></MenuItem>
+      <MenuItem icon="mdi-chart-bubble" title="Ingredients" href="/ingredients"></MenuItem>
       <MenuItem icon="mdi-account-multiple" title="Users" href="/users"></MenuItem>
 
       <v-list-group prepend-icon="mdi-settings">
