@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row>
       <v-col sm="12" xl="8" class="text-right">
-        <v-btn color="primary">
+        <v-btn to="/ingredients/create" color="primary">
           <v-icon left dark>mdi-plus</v-icon>
           Add
         </v-btn>
