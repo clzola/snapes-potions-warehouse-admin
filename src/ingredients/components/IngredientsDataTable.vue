@@ -22,11 +22,11 @@
       loading-text="Loading ingredients...">
 
       <template v-slot:item.picture_url="{ item }">
-        <img height="128" src="item.picture_url" class="ma-2 pa-2" style="border: 2px solid grey"/>
+        <img :src="item.picture_url" class="ma-2 pa-2 ingredient-picture" style=""/>
       </template>
 
       <template v-slot:item.description="{ item }">
-        {{ (item.description.length > 80) ? item.description.substr(0, 79) + '...' : item.description }}
+        {{ (item.description.length > 200) ? item.description.substr(0, 199) + '...' : item.description }}
       </template>
 
       <template v-slot:item.amount="{ item }">
@@ -148,3 +148,11 @@ export default {
   }
 }
 </script>
+
+<style lang="sass" scoped>
+.ingredient-picture
+  width: 128px
+  height: 128px
+  object-fit: contain
+  border: 2px solid grey
+</style>
